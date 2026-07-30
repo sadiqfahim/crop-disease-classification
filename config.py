@@ -1,4 +1,3 @@
-
 import os
 
 # ==========================================================
@@ -25,7 +24,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 # Training Parameters
 # ==========================================================
 BATCH_SIZE = 32
-EPOCHS = 3
+EPOCHS = 2
 LEARNING_RATE = 1e-4
 IMAGE_SIZE = 224
 
@@ -40,7 +39,7 @@ AVAILABLE_MODELS = {
     "deit": "deit_base_patch16_224",
     "pit": "pit_b_224",
     "swin": "swin_base_patch4_window7_224",
-    "caformer": "caformer_b36.sail_in22k_ft_in1k",
+    "caformer": "caformer_s18",
 }
 
 # ==========================================================
@@ -56,6 +55,15 @@ MODEL_NAME = AVAILABLE_MODELS[CURRENT_MODEL]
 DEVICE = "cuda"
 
 # ==========================================================
-# Saved ViT Model
+# Saved Model Checkpoints (all 5 trained, uploaded as Kaggle Models)
 # ==========================================================
-VIT_MODEL_PATH = "/kaggle/input/models/mdfarhansadiqfahim/vit-base-patch16-224-crop-disease-classifier/pytorch/default/1/best_vit_base_patch16_224.pth"
+MODEL_PATHS = {
+    "vit": "/kaggle/input/models/mdfarhansadiqfahim/vit-base-patch16-224-crop-disease-classifier/pytorch/default/1/best_vit_base_patch16_224.pth",
+    "deit": "/kaggle/input/models/mdfarhansadiqfahim/deit-base-patch16-224-crop-disease-classifier/pytorch/default/1/best_deit_base_patch16_224.pth",
+    "pit": "/kaggle/input/models/mdfarhansadiqfahim/pit-b-224-crop-disease-classifier/pytorch/default/1/best_pit_b_224.pth",
+    "swin": "/kaggle/input/models/mdfarhansadiqfahim/swin-base-patch4-224-crop-disease-classifier/pytorch/default/1/best_swin_base_patch4_window7_224.pth",
+    "caformer": "/kaggle/input/models/mdfarhansadiqfahim/caformer-s18-crop-disease-classifier/pytorch/default/1/best_caformer_s18.pth",
+}
+
+MODEL_PATH = MODEL_PATHS.get(CURRENT_MODEL, None)
+VIT_MODEL_PATH = MODEL_PATHS["vit"]
